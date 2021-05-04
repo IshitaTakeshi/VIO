@@ -6,9 +6,9 @@
 
 #include <sophus/so3.hpp>
 
-class RotationIntegration {
+class AngularVelocityIntegration {
  public:
-  RotationIntegration(const Eigen::Vector3d& w0) :
+  AngularVelocityIntegration(const Eigen::Vector3d& w0) :
       quaternion_(Eigen::Quaterniond::Identity()),
       angular_velocity0_(w0) {}
 

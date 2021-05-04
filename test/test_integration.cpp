@@ -19,7 +19,7 @@ TEST(Integration, Update) {
   const double dt = 0.1;
 
   const Eigen::Vector3d omega = generateOmega();
-  RotationIntegration integration(omega);
+  AngularVelocityIntegration integration(omega);
   Sophus::SO3d r;
   for (int i = 1; i < n; i++) {
     const Sophus::SO3d dr = Sophus::SO3d::exp(omega * dt);

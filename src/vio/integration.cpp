@@ -41,7 +41,8 @@ Eigen::Vector3d updatePosition(const Eigen::Vector3d& p0,
   return p0 + dp;
 }
 
-void RotationIntegration::update(const Eigen::Vector3d& angular_velocity1, const double dt) {
+void AngularVelocityIntegration::update(
+    const Eigen::Vector3d& angular_velocity1, const double dt) {
   const auto w0 = angular_velocity0_;
   const auto w1 = angular_velocity1;
 
