@@ -43,11 +43,20 @@ Eigen::Vector3d updatePosition(const Eigen::Vector3d& p0,
 
 void AngularVelocityIntegration::update(
     const Eigen::Vector3d& angular_velocity1, const double dt) {
-  const auto w0 = angular_velocity0_;
-  const auto w1 = angular_velocity1;
+  const Eigen::Vector3d w0 = angular_velocity0_;
+  const Eigen::Vector3d w1 = angular_velocity1;
 
   const Eigen::Quaterniond dq = clacRotationChange(w0, w1, dt);
   quaternion_ = updateRotation(quaternion_, dq);
 
   angular_velocity0_ = w1;
+}
+
+void AccelerationIntegration::update(
+    const Eigen::Vector3d& acceleration1, const double dt) {
+  const Eigen::Vector3d a0 = acceleration0_;
+  const Eigen::Vector3d a1 = acceleration1;
+  const Eigen::Vector3d dv = 0.5 * (a0 + a1) * dt;
+  velocity_ = updateVelocity(velocity_, dv);
+  acceleration0_ = a1;
 }
