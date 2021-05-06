@@ -24,14 +24,15 @@ TEST(RotationIntegration, Update) {
     omegas[i] = generateOmega();
   }
 
-  std::cout.precision(4);
-  AngularVelocityIntegration integration(omegas[0]);
   Sophus::SO3d r;
   for (int i = 1; i < n; i++) {
     const Sophus::SO3d dr = Sophus::SO3d::exp(omegas[i] * dt);
-
-    integration.update(omegas[i], dt);
     r = r * dr;
+  }
+
+  AngularVelocityIntegration integration(omegas[0]);
+  for (int i = 1; i < n; i++) {
+    integration.update(omegas[i], dt);
   }
 
   const auto pred = integration.get();
@@ -39,7 +40,7 @@ TEST(RotationIntegration, Update) {
   ASSERT_LE((pred.vec() - r.unit_quaternion().vec()).norm(), 4e-3);
 }
 
-TEST(AccelerationIntegration, Update) {
+TEST(EuclideanIntegration, Update) {
   const int n = 10;
 
   auto acceleration = [](const double t) -> Eigen::Vector3d {
@@ -60,7 +61,7 @@ TEST(AccelerationIntegration, Update) {
 
   const double dt = 0.1;
 
-  AccelerationIntegration integration(acceleration(0.0 * dt));
+  EuclideanIntegration integration(acceleration(0.0 * dt));
 
   for (int i = 1; i <= n; i++) {
     integration.update(acceleration(double(i) * dt), dt);

@@ -23,9 +23,9 @@ class AngularVelocityIntegration {
   Eigen::Vector3d angular_velocity0_;
 };
 
-class AccelerationIntegration {
+class EuclideanIntegration {
  public:
-  AccelerationIntegration(const Eigen::Vector3d& a0) :
+  EuclideanIntegration(const Eigen::Vector3d& a0) :
       velocity_(Eigen::Vector3d::Zero()),
       acceleration0_(a0) {}
   void update(const Eigen::Vector3d& acceleration1, const double dt);

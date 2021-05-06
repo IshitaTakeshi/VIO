@@ -52,7 +52,7 @@ void AngularVelocityIntegration::update(
   angular_velocity0_ = w1;
 }
 
-void AccelerationIntegration::update(
+void EuclideanIntegration::update(
     const Eigen::Vector3d& acceleration1, const double dt) {
   const Eigen::Vector3d a0 = acceleration0_;
   const Eigen::Vector3d a1 = acceleration1;
