@@ -60,3 +60,18 @@ void EuclideanIntegration::update(
   velocity_ = updateVelocity(velocity_, dv);
   acceleration0_ = a1;
 }
+
+void PoseIntegration::update(
+    const Eigen::Vector3d& angular_velocity,
+    const Eigen::Vector3d& local_acceleration,
+    const double dt) {
+  rotation_.update(angular_velocity, dt);
+
+  const Eigen::Quaterniond rotation = rotation_.get();
+  const Eigen::Vector3d world_acceleration = rotation * local_acceleration;
+  velocity_.update(world_acceleration, dt);
+
+  const Eigen::Vector3d velocity = velocity_.get();
+
+  position_.update(velocity, dt);
+}
