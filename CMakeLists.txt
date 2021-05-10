@@ -12,14 +12,7 @@ find_package(Eigen3 REQUIRED)
 ## System dependencies are found with CMake's conventions
 find_package(Boost REQUIRED COMPONENTS system)
 
-set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
-
 include(ExternalProject)
-
-ExternalProject_Add(sophus
-    GIT_REPOSITORY https://github.com/strasdat/Sophus
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
-)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -121,7 +114,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
     include
-    ${EXTERNAL_INSTALL_LOCATION}/include
+    external/Sophus
     ${Boost_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
     ${EIGEN3_INCLUDE_DIR}
