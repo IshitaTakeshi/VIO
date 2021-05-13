@@ -16,7 +16,11 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
-uses: mattnotmitt/doxygen-action@v1
-with:
-    doxyfile-path: 'docs/Doxygen'
-    enable-latex: true
+jobs:
+  Generate-docs:
+    runs-on: ubuntu-latest:
+    steps:
+      - uses: mattnotmitt/doxygen-action@v1
+        with:
+          doxyfile-path: 'docs/Doxygen'
+          enable-latex: true
