@@ -13,7 +13,6 @@ jobs:
         with:
           doxyfile-path: 'Doxyfile'
           working-directory: 'docs'
-          enable-latex: true
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.3
