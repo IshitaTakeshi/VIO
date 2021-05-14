@@ -8,7 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Doxygen Action
+      - name: Generate docs
         uses: mattnotmitt/doxygen-action@v1.3.1
         with:
           doxyfile-path: 'Doxyfile'
@@ -19,4 +19,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           branch: gh-pages
-          folder: docs
+          folder: docs/html
