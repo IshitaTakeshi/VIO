@@ -21,13 +21,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install doxygen graphviz
           doxygen Doxyfile
-          sudo chmod 775 docs/html
 
       - name: Show directory permission
         run: echo $(ls -l docs/html)
 
       - name: Move generated files
         run: |
+          sudo chmod 775 docs/html
           mv docs/html public
 
       - name: Deploy
