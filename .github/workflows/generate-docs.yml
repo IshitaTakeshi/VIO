@@ -26,7 +26,7 @@ jobs:
 
       - name: Move generated files
         run: |
-          mv docs/html public
+          cp -r docs/html public
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
