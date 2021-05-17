@@ -21,6 +21,9 @@ jobs:
           doxyfile-path: 'Doxyfile'
           working-directory: 'docs'
 
+      - name: Show directory permission
+        run: echo $(ls -l docs/html)
+
       - name: Move generated files
         run: |
           mv docs/html publish
