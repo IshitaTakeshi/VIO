@@ -18,7 +18,8 @@ jobs:
       - name: Generate docs
         run: |
           cd docs
-          apk add doxygen graphviz ttf-freefont
+          sudo apt-get update
+          sudo apt-get install doxygen graphviz
           doxygen Doxyfile
 
       - name: Show directory permission
