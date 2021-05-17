@@ -21,9 +21,11 @@ jobs:
           doxyfile-path: 'Doxyfile'
           working-directory: 'docs'
 
-      - name: Deploy
+      - name: Move generated files
         run: |
           mv docs/html publish
+
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
